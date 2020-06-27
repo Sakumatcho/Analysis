@@ -21,7 +21,7 @@ class InterPolator():
         print(f'サンプリング数: {num_sampling + 1}')
 
         self.sr_sampling = pd.Series(
-            np.arange(self.min_time, (num_sampling + 1) * delta_time, dtype=int),
+            np.arange(start=self.min_time, stop=(num_sampling + 1) * delta_time, step=delta_time, dtype=int),
             name=self.col_sampling_time, 
             dtype=np.float64
         )
