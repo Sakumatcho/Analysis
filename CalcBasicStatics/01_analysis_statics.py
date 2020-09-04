@@ -102,7 +102,6 @@ def aggrigate_statics(df_data, path_outputdir):
     df_statics['欠損数'] = num_record - df_statics['count']
     df_statics['欠損率'] = df_statics['欠損数'] / num_record
     df_statics['75% - 25%'] = df_statics['75%'] - df_statics['25%']
-    df_statics = df_statics.loc[:,list_cols].copy()
     df_statics = df_statics.rename(columns={'count': '有効レコード数','unique': '値種類数','top': '最頻値',
                                             'freq': '頻度','mean': '平均値','std': '標準偏差',
                                             'min': '最小値','25%': '25%-tile値','50%': '中央値',
