@@ -426,12 +426,12 @@ def make_correlation(df_data, path_outputdir, num_sample):
         # 散布図で表示できるようにラベルエンコーディング
         if dtype_subject == 'object': 
             le_subject = create_label_encoder(sr_subject_feature)
-            sr_subject_feature_le = pd.Series(le_subject.transform(sr_subject_feature), index=sr_subject_feature.index)
+            sr_subject_feature = pd.Series(le_subject.transform(sr_subject_feature), index=sr_subject_feature.index)
 
         print('【Y軸】')
         # Yに割り当てる特徴量をXを除いて総当たり
         for idx, object_feature in enumerate(object_features): 
-            sr_subject_feature_tmp = sr_subject_feature_le.copy()
+            sr_subject_feature_tmp = sr_subject_feature.copy()
             sr_object_feature = df_data[object_feature].dropna()
             dtype_object = sr_object_feature.dtype
             print(object_feature, dtype_object)
@@ -498,6 +498,7 @@ def make_correlation(df_data, path_outputdir, num_sample):
 
         # 全特徴量について描画終了後
         plt.tight_layout()
+        subject_feature = subject_feature.replace('/', '／')
         outputfilepath = path_outputdir/(f'{subject_feature}_scatters_correlations.png')
         plt.savefig(outputfilepath, dpi=100)
         plt.close()
